@@ -6,7 +6,7 @@
 
 template <typename Type>
 class SingleLinkedList {
-    // Узел списка
+    
     struct Node {
         Node() = default;
         Node(const Type& val, Node* next)
