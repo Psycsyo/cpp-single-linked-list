@@ -9,17 +9,6 @@
 #include <stdexcept>
 #include <vector>
  
-#include <iterator>
-#include <cassert>
-#include <cstddef>
-#include <string>
-#include <utility>
-#include <iostream>
-#include <algorithm>
-#include <cassert>
-#include <stdexcept>
-#include <vector>
- 
 template <typename Type>
 class SingleLinkedList {
  
