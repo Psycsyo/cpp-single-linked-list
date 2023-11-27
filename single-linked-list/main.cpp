@@ -3,19 +3,8 @@
 #include <string>
 #include <utility>
 #include <algorithm>
+#inlude "single-linked-list.h"
 
-template <typename Type>
-class SingleLinkedList {
-    
-    struct Node {
-        Node() = default;
-        Node(const Type& val, Node* next)
-            : value(val)
-            , next_node(next) {
-        }
-        Type value{};
-        Node* next_node = nullptr;
-    };
 
     
     template <typename ValueType>
