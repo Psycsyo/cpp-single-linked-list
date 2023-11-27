@@ -26,12 +26,12 @@ void Test1() {
     struct DeletionSpy {
         DeletionSpy() = default;
         explicit DeletionSpy(int& instance_counter) noexcept
-            : instance_counter_ptr_(&instance_counter)  //
+            : instance_counter_ptr_(&instance_counter)  
         {
             OnAddInstance();
         }
         DeletionSpy(const DeletionSpy& other) noexcept
-            : instance_counter_ptr_(other.instance_counter_ptr_)  //
+            : instance_counter_ptr_(other.instance_counter_ptr_)  
         {
             OnAddInstance();
         }
@@ -77,7 +77,6 @@ void Test1() {
         assert(l.IsEmpty());
     }
 
-    
     {
         int item0_counter = 0;
         int item1_counter = 0;
@@ -108,14 +107,13 @@ void Test1() {
         assert(item2_counter == 0);
     }
 
-    
     struct ThrowOnCopy {
         ThrowOnCopy() = default;
         explicit ThrowOnCopy(int& copy_counter) noexcept
             : countdown_ptr(&copy_counter) {
         }
         ThrowOnCopy(const ThrowOnCopy& other)
-            : countdown_ptr(other.countdown_ptr)  //
+            : countdown_ptr(other.countdown_ptr)  
         {
             if (countdown_ptr) {
                 if (*countdown_ptr == 0) {
@@ -157,20 +155,17 @@ void Test1() {
 }
 
 void Test2() {
-    
     {
         SingleLinkedList<int> list;
         
         const auto& const_list = list;
 
-        
         assert(list.begin() == list.end());
         assert(const_list.begin() == const_list.end());
         assert(list.cbegin() == list.cend());
         assert(list.cbegin() == const_list.begin());
         assert(list.cend() == const_list.end());
     }
-
     
     {
         SingleLinkedList<int> list;
@@ -207,7 +202,7 @@ void Test2() {
             assert(((new_begin_copy)++) == new_begin);
             assert(new_begin_copy == old_begin);
         }
-       
+        
         {
             auto old_begin_copy(old_begin);
             assert((++old_begin_copy) == list.end());
@@ -267,7 +262,6 @@ void Test3() {
         assert(empty_list == another_empty_list);
     }
 
-    
     {
         SingleLinkedList<int> first;
         first.PushFront(1);
@@ -292,7 +286,7 @@ void Test3() {
 
         {
             using std::swap;
-            
+
             swap(first, second);
 
             assert(first.begin() == old_first_begin);
@@ -302,7 +296,6 @@ void Test3() {
         }
     }
 
-   
     {
         SingleLinkedList<int> list{ 1, 2, 3, 4, 5 };
         assert(list.GetSize() == 5);
@@ -310,7 +303,6 @@ void Test3() {
         assert(std::equal(list.begin(), list.end(), std::begin({ 1, 2, 3, 4, 5 })));
     }
 
-    
     {
         using IntList = SingleLinkedList<int>;
 
@@ -320,7 +312,6 @@ void Test3() {
         assert((IntList{ 1, 2, 3 } >= IntList{ 1, 2, 3 }));
     }
 
-    
     {
         const SingleLinkedList<int> empty_list{};
         
@@ -356,7 +347,7 @@ void Test3() {
             : countdown_ptr(&copy_counter) {
         }
         ThrowOnCopy(const ThrowOnCopy& other)
-            : countdown_ptr(other.countdown_ptr)  //
+            : countdown_ptr(other.countdown_ptr)  
         {
             if (countdown_ptr) {
                 if (*countdown_ptr == 0) {
@@ -423,6 +414,7 @@ void Test4() {
         int* deletion_counter_ptr = nullptr;
     };
 
+    
     {
         SingleLinkedList<int> numbers{ 3, 14, 15, 92, 6 };
         numbers.PopFront();
@@ -437,6 +429,7 @@ void Test4() {
         assert(deletion_counter == 1);
     }
 
+    
     {
         SingleLinkedList<int> empty_list;
         const auto& const_empty_list = empty_list;
@@ -459,6 +452,7 @@ void Test4() {
             assert(inserted_item_pos == lst.begin());
             assert(*inserted_item_pos == 123);
         }
+
         {
             SingleLinkedList<int> lst{ 1, 2, 3 };
             auto inserted_item_pos = lst.InsertAfter(lst.before_begin(), 123);
@@ -494,7 +488,6 @@ void Test4() {
         }
         
         ThrowOnCopy& operator=(const ThrowOnCopy& rhs) = delete;
-        
         int* countdown_ptr = nullptr;
     };
 
