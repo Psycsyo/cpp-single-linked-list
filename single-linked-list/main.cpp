@@ -3,6 +3,7 @@
 #include <string>
 #include <utility>
 #include <algorithm>
+#include <vector>
 #inlude "single-linked-list.h"
 
 
@@ -48,7 +49,7 @@
 
         
         [[nodiscard]] bool operator!=(const BasicIterator<const Type>& rhs) const noexcept {
-            return this->node_ != rhs.node_;
+             return !(*this == rhs);
         }
 
        
@@ -58,7 +59,7 @@
 
         
         [[nodiscard]] bool operator!=(const BasicIterator<Type>& rhs) const noexcept {
-            return this->node_ != rhs.node_;
+             return !(*this == rhs);
         }
 
         
@@ -71,7 +72,7 @@
 
         
         BasicIterator operator++(int) noexcept {
-            assert(node_ != nullptr);
+            
 
             auto old_value(*this);
             ++(*this);
@@ -97,8 +98,7 @@
     };
 
 public:
-    SingleLinkedList() {
-    }
+    SingleLinkedList() = default;
 
     SingleLinkedList(std::initializer_list<Type> values) {
         
@@ -108,7 +108,7 @@ public:
     }
 
     SingleLinkedList(const SingleLinkedList& other) {
-        assert(size_ == 0 && head_.next_node == nullptr);
+       
 
         
         Assign(other);
@@ -256,20 +256,19 @@ private:
     
     template<typename T>
     void Assign(T& elem) {
-        SingleLinkedList elem_copy;
-        SingleLinkedList tmp_reverse;
+SingleLinkedList elem_copy;
+Node* current = elem.head;
 
         
-        for (auto it = elem.begin(); it != elem.end(); ++it) {
-            tmp_reverse.PushFront(*it);
-        }
-        
-        for (auto it = tmp_reverse.begin(); it != tmp_reverse.end(); ++it) {
-            elem_copy.PushFront(*it);
-        }
+        while (current != nullptr) {
+    Node* new_node = new Node(current->data);
+    new_node->next = elem_copy.head;
+    elem_copy.head = new_node;
 
-        swap(elem_copy);
-    }
+    current = current->next;
+}
+
+swap(elem_copy);
 
     
 };
@@ -291,12 +290,16 @@ bool operator!=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>&
 
 template <typename Type>
 bool operator<(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+    bool areContainersEqual(const std::vector<int>& lhs, const std::vector<int>& rhs) {
+    if (lhs.size() != rhs.size()) {
+        return false;
+    }
+    
     return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
 }
-
 template <typename Type>
 bool operator<=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
-    return !(lhs > rhs);
+    return !(lhs < rhs);
 }
 
 template <typename Type>
