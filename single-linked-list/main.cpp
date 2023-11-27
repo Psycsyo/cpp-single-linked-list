@@ -4,48 +4,36 @@
 #include <string>
 #include <utility>
 #include <algorithm>
-#include <vector>
 #include "single-linked-list.h"
 
-template <typename Type> 
-void swap(SingleLinkedList<Type>& lhs, SingleLinkedList<Type>& rhs) noexcept { 
-    lhs.swap(rhs); 
-} 
-
-template <typename Type> 
-bool operator==(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) { 
-    return std::equal(lhs.begin(), lhs.end(), rhs.begin()); 
-} 
-
-template <typename Type> 
-bool operator!=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) { 
-    return !(lhs == rhs); 
-} 
-
-template <typename Type> 
-bool operator<(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) { 
-    bool areContainersEqual(const std::vector<int>& lhs, const std::vector<int>& rhs) { 
-    if (lhs.size() != rhs.size()) { 
-        return false; 
-    } 
-    }
-    return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()); 
-} 
-
-template <typename Type> 
-bool operator<=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) { 
-    return !(lhs < rhs); 
-
-} 
-
-template <typename Type> 
-bool operator>(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) { 
-    return rhs < lhs; 
-} 
-
-template <typename Type> 
-bool operator>=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) { 
-    return !(lhs < rhs); 
+template <typename Type>
+bool operator==(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+    return std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+}
+ 
+template <typename Type>
+bool operator!=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+    return !std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+}
+ 
+template <typename Type>
+bool operator<(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+    return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+}
+ 
+template <typename Type>
+bool operator<=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+    return !(rhs < lhs);
+}
+ 
+template <typename Type>
+bool operator>(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+    return rhs < lhs;
+}
+ 
+template <typename Type>
+bool operator>=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+    return !(lhs < rhs);
 }
  
 void Test0() {
