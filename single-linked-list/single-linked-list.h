@@ -1,6 +1,9 @@
 #pragma once
-
-// добавьте неоходимые include-директивы сюда
+#include <cassert>
+#include <cstddef>
+#include <string>
+#include <utility>
+#include <algorithm>
 
 class SingleLinkedList {
     
