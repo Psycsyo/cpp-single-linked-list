@@ -9,6 +9,17 @@
 #include <stdexcept>
 #include <vector>
  
+#include <iterator>
+#include <cassert>
+#include <cstddef>
+#include <string>
+#include <utility>
+#include <iostream>
+#include <algorithm>
+#include <cassert>
+#include <stdexcept>
+#include <vector>
+ 
 template <typename Type>
 class SingleLinkedList {
  
@@ -269,21 +280,21 @@ private:
     size_t size_ = 0;
 
     
-    template<typename T>
-    void Assign(T& elem) {
-SingleLinkedList elem_copy;
-Node* current = elem.head;
+    template <typename InputIterator> 
+    void Assign(InputIterator from, InputIterator to) { 
+        SingleLinkedList<Type> tmp; 
+        Node** node_ptr = &tmp.head_.next_node; 
 
-        
-        while (current != nullptr) {
-    Node* new_node = new Node(current->data);
-    new_node->next = elem_copy.head;
-    elem_copy.head = new_node;
+        while (from != to) { 
+            assert(*node_ptr == nullptr); 
 
-    current = current->next;
-}
-
-swap(elem_copy);
+            *node_ptr = new Node(*from, nullptr); 
+            ++tmp.size_; 
+            node_ptr = &((*node_ptr)->next_node); 
+            ++from; 
+        } 
+        swap(tmp); 
+    } 
 
     
 };
@@ -309,7 +320,7 @@ bool operator<(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& 
     if (lhs.size() != rhs.size()) {
         return false;
     }
-    
+    }
     return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
 }
 template <typename Type>
