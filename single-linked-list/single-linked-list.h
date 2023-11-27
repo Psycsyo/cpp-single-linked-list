@@ -2,9 +2,16 @@
 
 // добавьте неоходимые include-директивы сюда
 
-template <typename Type>
 class SingleLinkedList {
-	// напишите код класса тут
-};
+    
+    struct Node {
+        Node() = default;
+        Node(const Type& val, Node* next)
+            : value(val)
+            , next_node(next) {
+        }
+        Type value{};
+        Node* next_node = nullptr;
+    };
 
 // внешние функции разместите здесь
