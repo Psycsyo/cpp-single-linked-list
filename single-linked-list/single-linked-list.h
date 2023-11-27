@@ -1,10 +1,6 @@
 #pragma once
-#include <cassert>
-#include <cstddef>
-#include <string>
-#include <utility>
-#include <algorithm>
-
+#include <iostream>
+#include <stdexcept>
 class SingleLinkedList {
     
     struct Node {
