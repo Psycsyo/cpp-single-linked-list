@@ -349,9 +349,15 @@ bool operator!=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>&
     return !std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
 }
  
-template <typename Type>
-bool operator<(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
-    return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+template <typename Type> 
+bool operator<(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) { 
+    if (&lhs == &rhs) { 
+        return false;
+    }
+    if (lhs.size() != rhs.size()) { 
+        return false;
+    }
+    return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()); 
 }
  
 template <typename Type>
