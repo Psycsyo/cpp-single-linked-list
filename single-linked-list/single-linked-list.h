@@ -87,13 +87,13 @@ class SingleLinkedList {
 public:
     SingleLinkedList() = default;
  
-    [[nodiscard]] size_t GetSize() const noexcept {
-        return size_;
-    }
- 
-    [[nodiscard]] bool IsEmpty() const noexcept {
-        return !(size_ != 0);
-    }
+    [[nodiscard]] size_t GetSize() const noexcept { 
+        return size_; 
+    } 
+
+    [[nodiscard]] bool IsEmpty() const noexcept { 
+        return size_ == 0; 
+    } 
  
     void PushFront(const Type& value) {
         head_.next_node = new Node(value, head_.next_node);
