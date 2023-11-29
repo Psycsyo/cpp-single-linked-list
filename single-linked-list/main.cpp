@@ -6,6 +6,8 @@
 #include <algorithm>
 #include "single-linked-list.h"
  
+ using namespace std;
+ 
 void Test0() {
     using namespace std;
     {
