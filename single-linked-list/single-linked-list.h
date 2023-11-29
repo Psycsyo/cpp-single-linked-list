@@ -243,12 +243,14 @@ bool operator==(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>&
             && std::equal(lhs.begin(), lhs.end(), rhs.begin()));   
 } 
 
+ 
 template <typename Type>
 bool operator!=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
     return !(lhs == rhs);  
 }
  
 template <typename Type>  
+
 bool operator<(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {  
     return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());  
 
