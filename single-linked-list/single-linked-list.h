@@ -42,21 +42,21 @@ class SingleLinkedList {
  
         BasicIterator& operator=(const BasicIterator& rhs) = default;
  
-        [[nodiscard]] bool operator==(const BasicIterator<const Type>& rhs) const noexcept {
-            return this->node_ == rhs.node_;
-        }
- 
-        [[nodiscard]] bool operator!=(const BasicIterator<const Type>& rhs) const noexcept {
-            return this->node_ != rhs.node_;
-        }
- 
-        [[nodiscard]] bool operator==(const BasicIterator<Type>& rhs) const noexcept {
-            return this->node_ == rhs.node_;
-        }
- 
-        [[nodiscard]] bool operator!=(const BasicIterator<Type>& rhs) const noexcept {
-            return this->node_ != rhs.node_;
-        }
+        [[nodiscard]] bool operator==(const BasicIterator<const Type>& rhs) const noexcept { 
+            return this->node_ == rhs.node_; 
+        } 
+
+        [[nodiscard]] bool operator!=(const BasicIterator<const Type>& rhs) const noexcept { 
+             return !(*this == rhs); 
+        } 
+
+        [[nodiscard]] bool operator==(const BasicIterator<Type>& rhs) const noexcept { 
+            return this->node_ == rhs.node_; 
+        } 
+
+        [[nodiscard]] bool operator!=(const BasicIterator<Type>& rhs) const noexcept { 
+             return !(*this == rhs); 
+        } 
  
         BasicIterator& operator++() noexcept {
             assert(node_ != nullptr);
